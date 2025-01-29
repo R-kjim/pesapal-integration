@@ -1,0 +1,5 @@
+.env
+/pesapal
+__pycache__
+app.db
+/migrations

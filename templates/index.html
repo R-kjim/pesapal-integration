@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Pesapal payment integration sandbox testing</h1>
+    <p>Click on the button below to initiate a payment of Ksh 10</p>
+    <button id="button" onclick="start_payment(10)">Pay Ksh 10/= Now</button>
+</body>
+<script>
+    const start_payment=async(amount)=>{
+        try {
+            
+        
+        let res=await fetch('/order-now',{
+            method:"POST",
+            body:JSON.stringify({"amount":amount}),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        let data=await res.json()
+        if(res.ok){
+            window.open(data.redirect_url,"_blank")
+        }
+        } catch (error) {
+                console.log(error)
+            }
+    }
+    
+</script>
+</html>
